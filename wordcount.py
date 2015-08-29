@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import csv, re
+import csv
+import re
 
 
 def count_word(line, word):
