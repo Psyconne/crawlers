@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
-import urllib.request, re, csv
+import urllib.request
+import re
+import csv
 
 main_url = 'http://www.visitphilly.com/things-to-do/'
 names_of_category = ['Museums & Attractions', 'Restaurants & Dining',
