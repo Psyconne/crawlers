@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
-import csv, requests, re, json, traceback, itertools, time, threading
+import csv 
+import requests
+import re
+import json
+import traceback
+import itertools
+import time
+import threading
 from datetime import datetime
 from bs4 import BeautifulSoup
 
 
-hdrs = {'Accept': 'application/json, text/javascript, */*; q=0.01', 'Accept-Encoding': 'gzip, deflate, sdch',
-        'Accept-Language': 'ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4,it;q=0.2',
-        'Connection': 'keep-alive', 'Cookie': """vis=110e84575f9b1d17-063b421e71ed9544-216088a224082fc7v1; lang=en; _cb_ls=1; __ssid=25b386a1-ff95-4397-b571-df2f3c8d2a71; local_offset=-713; _ga=GA1.2.285379430.1434391134; _gat=1; mp_75b1d24a516ecfc955eadfadc4910661_mixpanel=%7B%22distinct_id%22%3A%20%22110e84575f9b1d17-063b421e71ed9544-216088a224082fc7v1%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22%24initial_referrer%22%3A%20%22https%3A%2F%2Fwww.google.ru%2F%22%2C%22%24initial_referring_domain%22%3A%20%22www.google.ru%22%7D; _chartbeat2=rZ6VcDfhW5DTQJ4o.1434391134776.1436132589093.0111011111111111; last_page=https%3A%2F%2Fwww.kickstarter.com%2Fdiscover%2Fadvanced%3Fgoogle_chrome_workaround%26page%3D166%26category_id%3D1%26woe_id%3D0%26sort%3Dnewest; _ksr_session=Q21yRHFTQ0lLWk5DOThOb0lsTzFSZ0JJS1IxSG9zSm5zZkwwVENvdXduS0g4aWI2ZDdUSEE1K2RmU0dCdzNNRUF6VFdLUnF4QjEvYkE1ME9QbnFsMmlUNXQwd25NUm05TThZU0cybWtKVnFlTk5YcVlpLzdBL3c1cUU2RmE3R09OMW95WVVvZWJzNXFudWxtc0lScVg2Z0J3bWVKdEc1STZ4U1FqbkZVT1NUcnFVZDdGaTJzdXJkYTU4Sm9ac3M1NGpKK2JUSUJQYXBVZ0I2RTNBUmRlQT09LS0vMTRWbHk0Nm90Yis4ejNxQ1ZBVm5RPT0%3D--e23f65a58c8b9d2cf253359a06918fe2b9209ecd; request_time=Sun%2C+05+Jul+2015+21%3A47%3A28+-0000; _chartbeat5=545,2831,%2Fdiscover%2Fadvanced%3Fgoogle_chrome_workaround%26page%3D166%26category_id%3D1%26woe_id%3D0%26sort%3Dnewest,https%3A%2F%2Fwww.kickstarter.com%2Fdiscover%2Fadvanced%3Fgoogle_chrome_workaround%26page%3D166%26category_id%3D1%26woe_id%3D0%26sort%3Dnewest,CQcxx4ljeYBPvxXcrXFpSB1WUrt,*%5B%40id%3D'projects'%5D%2Fdiv%5B2%5D%2Fdiv%5B1%5D%2Fa%5B1%5D,c""",
-        'Host': 'www.kickstarter.com', 'Referer': 'https://www.kickstarter.com/discover/advanced?google_chrome_workaround&page=166&category_id=1&woe_id=0&sort=newest',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36',
-        'X-CSRF-Token': 'Mw4tqfX1ObbOzz455dQMifKyK5cIAuaOurJCKFV1OlY=', 'X-Requested-With': 'XMLHttpRequest'}
+hdrs = {}
 start = time.time()
 f = open('kickstarter.txt', 'w')
 csvfile =  open('kickstarter.csv', 'w', encoding='utf-8')
