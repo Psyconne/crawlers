@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-import xlsxwriter, requests
+import xlsxwriter
+import requests
 from bs4 import BeautifulSoup
 
 big_one = []
