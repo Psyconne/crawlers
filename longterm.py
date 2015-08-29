@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from bs4 import BeautifulSoup
-import requests, re, xlsxwriter, xlrd
+import requests
+import re
+import xlsxwriter
+import xlrd
 
 # url = 'https://www.longtermcarelink.net/a8profiles.htm'
 # response = requests.get(url)
